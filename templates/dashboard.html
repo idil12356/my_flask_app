@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>📊 Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            font-family: sans-serif;
+        }
+        .box {
+            background: rgba(255,255,255,0.92);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            background: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+        }
+        a.btn-small {
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            color: white;
+        }
+        .edit { background: #007bff; }
+        .delete { background: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>📊 Admin Dashboard</h2>
+
+        <p><strong>Wadarta Users:</strong> {{ total }}</p>
+        <p><strong style="color: green;">✅ Kuwii dhammeeyay quiz-ka:</strong> {{ completed_users|length }}</p>
+        <p><strong style="color: red;">❌ Aan qaadin quiz-ka:</strong> {{ pending_users|length }}</p>
+
+        <h3>✅ Users-ka Dhameeyay Quiz:</h3>
+        <table>
+            <tr><th>ID</th><th>Username</th><th>Score</th><th>Actions</th></tr>
+            {% for user in completed_users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}/10</td>
+                <td>
+                    <a href="/update_user/{{ user[0] }}" class="btn-small edit">✏️ Edit</a>
+                    <a href="/delete_user/{{ user[0] }}" class="btn-small delete" onclick="return confirm('Delete user?')">🗑️</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3 style="margin-top:30px;">❌ Users-ka aan qaadin Quiz:</h3>
+        <table>
+            <tr><th>ID</th><th>Username</th><th>Actions</th></tr>
+            {% for user in pending_users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>
+                    <a href="/update_user/{{ user[0] }}" class="btn-small edit">✏️ Edit</a>
+                    <a href="/delete_user/{{ user[0] }}" class="btn-small delete" onclick="return confirm('Delete user?')">🗑️</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br>
+        <a href="/welcome" class="btn">🏠 Back to Home</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diiwaangelin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg">
+    <div class="center-box">
+        <h2>Diiwaangeliso Akoon Cusub</h2>
+        <form method="post">
+    <input type="text" name="username" placeholder="Magacaaga" required><br><br>
+    <input type="password" name="password" placeholder="Furaha sirta" required><br><br>
+    <button type="submit" class="btn">➕ Register</button>
+    {% if message %}
+        <p style="color: red;">{{ message }}</p>
+    {% endif %}
+</form>
+        <p>Enter Your account? <a href="/login">Login</a></p>
+    </div>
+</body>
+</html>

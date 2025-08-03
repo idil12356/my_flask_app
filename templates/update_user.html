@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>✏️ Update User</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg">
+    <div class="center-box">
+        <h2>✏️ Update User</h2>
+        <form method="post">
+            <input type="text" name="username" value="{{ user[1] }}" required><br><br>
+            <label>
+                <input type="checkbox" name="is_admin" {% if user[2] %}checked{% endif %}>
+                Is Admin
+            </label><br><br>
+            <button type="submit" class="btn">Save Changes</button>
+            <a href="/dashboard" class="btn">Back</a>
+        </form>
+    </div>
+</body>
+</html>

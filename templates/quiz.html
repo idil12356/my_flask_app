@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz-ka Soomaaliya</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg">
+    <div class="center-box">
+        <h2>📝 Quiz-ka Soomaaliya</h2> 
+       <form method="post" action="/quiz">
+    {% if message %}
+        <p style="color: red;">{{ message }}</p>
+        <a href="/logout" class="btn">⬅️ Dib ugu noqo Login</a>
+    {% else %}
+        {% for question in questions %}
+            <div class="question">
+                <strong>{{ loop.index }}. {{ question[1] }}</strong>
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q{{ question[0] }}" value="{{ question[2] }}" required>
+                        <span>{{ question[2] }}</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q{{ question[0] }}" value="{{ question[3] }}">
+                        <span>{{ question[3] }}</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q{{ question[0] }}" value="{{ question[4] }}">
+                        <span>{{ question[4] }}</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="q{{ question[0] }}" value="{{ question[5] }}">
+                        <span>{{ question[5] }}</span>
+                    </label>
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn">✅ Gudbi</button>
+    {% endif %}
+</form>
+    </div>
+</body>
+</html>

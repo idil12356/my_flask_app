@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Natiijada Quiz-ka</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg">
+    <div class="center-box">
+        <h2>🎯 Natiijadaada</h2>
+        <p>Waxaad ka heshay <strong>{{ score }}/{{ total }}</strong> su’aalood sax ah.</p>
+
+        {% if score == total %}
+            <p>✅ Aad baad u fiican tahay! Guul buuxda ayaad gaartay!</p>
+        {% elif score >= total // 2 %}
+            <p>👏 Wanaagsan tahay! Si fiican ayaad u shaqeysay.</p>
+        {% else %}
+            <p>💡 Waxaad ubaahantahay in aad dib u barato Soomaaliya! Isku day mar kale.</p>
+        {% endif %}
+
+        <a href="/welcome" class="btn">🏠 Back to Home</a>
+        <a href="/logout" class="btn">🚪 Ka Bax</a>
+    </div>
+</body>
+</html>
